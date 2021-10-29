@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -24,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     private val TAG = "MainActivity"
     var messagesList = mutableListOf<Message>()
     private lateinit var adapter: MessagingAdapter
+    lateinit var loadingDialog: LoadingDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView()
         clickEvents()
         customBotMessage("Hello! I'm Alexia, your personal companion. How may I help you?")
+
+        loadingDialog = LoadingDialog(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -42,7 +46,15 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
             R.id.analyze -> {
-                Toast.makeText(this, "Analyze Mood", Toast.LENGTH_SHORT).show()
+                loadingDialog.startLoadingDialog()
+                GlobalScope.launch {
+                    delay(3000)
+                    withContext(Dispatchers.Main){
+                        loadingDialog.dismissDialog()
+                        val intent = Intent(this@MainActivity, Activities::class.java)
+                        startActivity(intent)
+                    }
+                }
                 return true
             }
             R.id.songs -> {

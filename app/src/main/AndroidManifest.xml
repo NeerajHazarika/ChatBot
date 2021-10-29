@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.project.alexia">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -9,6 +11,9 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.Alexia">
+        <activity
+            android:name=".Activities"
+            android:exported="true" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
