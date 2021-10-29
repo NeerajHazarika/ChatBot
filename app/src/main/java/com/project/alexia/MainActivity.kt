@@ -15,6 +15,8 @@ import com.project.alexia.ui.MessagingAdapter
 import com.project.alexia.utils.BotResponse
 import com.project.alexia.utils.Constants.OPEN_GOOGLE
 import com.project.alexia.utils.Constants.OPEN_SEARCH
+import com.project.alexia.utils.Constants.OPEN_SEARCH_HAPPY
+import com.project.alexia.utils.Constants.OPEN_SEARCH_SAD
 import com.project.alexia.utils.Constants.RECEIVE_ID
 import com.project.alexia.utils.Constants.SEND_ID
 import kotlinx.android.synthetic.main.activity_main.*
@@ -150,7 +152,18 @@ class MainActivity : AppCompatActivity() {
                         site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
                         startActivity(site)
                     }
-
+                    OPEN_SEARCH_HAPPY -> {
+                        val site = Intent(Intent.ACTION_VIEW)
+                        val searchTerm: String? = "Luis Fonsi - Despacito ft. Daddy Yankee"
+                        site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
+                        startActivity(site)
+                    }
+                    OPEN_SEARCH_SAD -> {
+                        val site = Intent(Intent.ACTION_VIEW)
+                        val searchTerm: String? = "Steady My Heart - Kari Jobe"
+                        site.data = Uri.parse("https://www.google.com/search?&q=$searchTerm")
+                        startActivity(site)
+                    }
                 }
             }
         }

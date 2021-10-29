@@ -7,4 +7,6 @@ object Constants {
 
     const val OPEN_GOOGLE = "Opening Google..."
     const val OPEN_SEARCH = "Searching..."
+    const val OPEN_SEARCH_HAPPY = "Searching...Happy Songs"
+    const val OPEN_SEARCH_SAD = "Searching...Mood lifting songs"
 }

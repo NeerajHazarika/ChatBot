@@ -2,6 +2,8 @@ package com.project.alexia.utils
 
 import com.project.alexia.utils.Constants.OPEN_GOOGLE
 import com.project.alexia.utils.Constants.OPEN_SEARCH
+import com.project.alexia.utils.Constants.OPEN_SEARCH_HAPPY
+import com.project.alexia.utils.Constants.OPEN_SEARCH_SAD
 import java.util.*
 
 object BotResponse {
@@ -40,6 +42,43 @@ object BotResponse {
             //Search on the internet
             message.contains("search")-> {
                 OPEN_SEARCH
+            }
+
+            //How are you?
+            message.contains("how are you") -> {
+                when (random) {
+                    0 -> "I'm doing fine, thanks!"
+                    1 -> "I'm hungry..."
+                    2 -> "Pretty good! How about you?"
+                    else -> "error"
+                }
+            }
+
+            //Search on the internet
+            message.contains("search")-> {
+                OPEN_SEARCH
+            }
+
+            //Song request
+            message.contains("song") -> {
+                when (random) {
+                    0 -> "How are you feeling today ?"
+                    1 -> "How was your day ?"
+                    3 -> "How are you doing ?"
+                    else -> "error"
+                }
+            }
+
+            //Song request
+            message.contains("happy") || message.contains("glad") ||
+                    message.contains("LOL") || message.contains("excited") ||
+                    message.contains("Amazing") || message.contains("good")-> {
+                OPEN_SEARCH_HAPPY
+            }
+
+            //Song request
+            message.contains("sad") -> {
+                OPEN_SEARCH_SAD
             }
 
             //When the programme doesn't understand...
