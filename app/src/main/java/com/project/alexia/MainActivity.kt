@@ -60,7 +60,15 @@ class MainActivity : AppCompatActivity() {
                 return true
             }
             R.id.songs -> {
-                Toast.makeText(this, "Recommend Songs", Toast.LENGTH_SHORT).show()
+                loadingDialog.startLoadingDialog()
+                GlobalScope.launch {
+                    delay(3000)
+                    withContext(Dispatchers.Main){
+                        loadingDialog.dismissDialog()
+                        val intent = Intent(this@MainActivity, SongsActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
                 return true
             }
         }
